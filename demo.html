@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url('whitehouse.png'); /* Add background image */
+            background-size: cover; /* Ensure it covers the entire screen */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #imageContainer {
+            margin: auto; /* Center align container */
+        }
+        #imageContainer img {
+            display: none;
+            margin: auto; /* Center align images */
+            max-width: 100%; /* Responsive image size */
+        }
+        #imageContainer img:first-child {
+            display: block;
+        }
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition-duration: 0.4s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .button-container {
+            margin: 20px 0; /* Spacing around buttons */
+        }
+    </style>
+</head>
+<body>
+    <h1 id="imageTitle">
+        美国议员社交网络
+    </h1>
+    <div id="imageContainer">
+        <img src="rep_network.png" title="众议院Facebook关注网络">
+        <img src="sen_network.png" title="参议院Facebook关注网络">
+        <img src="train.png" title="议员关注+动态情感分析训练集">
+        <img src="test.png" title="议员关注+动态情感分析测试集">
+    </div>
+    <div class="button-container">
+        <button onclick="prevImage()">上一张</button>
+        <button onclick="nextImage()">下一张</button>
+    </div>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll("#imageContainer img");
+        const imageTitles = [
+            "众议院Facebook关注网络",
+            "参议院Facebook关注网络",
+            "议员关注+动态情感分析训练集",
+            "议员关注+动态情感分析测试集"
+        ];
+
+        function updateImageAndTitle(index) {
+            images.forEach(img => img.style.display = 'none');
+            images[index].style.display = 'block';
+            document.getElementById('imageTitle').innerText = imageTitles[index];
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateImageAndTitle(currentImageIndex);
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateImageAndTitle(currentImageIndex);
+        }
+    </script>
+</body>
+</html>
